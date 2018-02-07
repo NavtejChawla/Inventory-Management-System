@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/templates/authTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Welcome #{loginController.remoteUser}
+    </ui:define>
+
+    <ui:define name="content">
+        Owner Content
+       <h:dataTable value="#{ownerService.findByUsername(facesContext.externalContext.remoteUser)}" 
+                     var="owner"
+                     styleClass="table table-hover table-striped">
+            <h:column>
+                <f:facet name="header"><h:outputText value="ID"/></f:facet>
+                <h:outputText value="#{owner.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                <h:outputText value="#{owner.firstName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                <h:outputText value="#{owner.lastName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Username"/></f:facet>
+                <h:outputText value="#{owner.user.userName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Last Updated"/></f:facet>
+                <h:outputText value="#{owner.lastUpdated}">
+                    <f:convertDateTime type="both" 
+                                       dateStyle="short" 
+                                       timeStyle="full"
+                                       timeZone="#{appConfig.defaultTimeZone}"/>
+                </h:outputText>
+            </h:column>
+        </h:dataTable>
+
+    </ui:define>
+
+</ui:composition>

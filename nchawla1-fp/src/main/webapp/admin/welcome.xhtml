@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/templates/authTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Welcome #{loginController.remoteUser}
+        <br/>
+        <h5>Customer Content</h5>
+    </ui:define>
+
+
+    <ui:define name="content">
+        <a href="http://localhost:8080/nchawla1-fp/logout">Logout</a>
+    </ui:define>
+
+
+    <br/>
+    <br/>
+
+
+
+</ui:composition>

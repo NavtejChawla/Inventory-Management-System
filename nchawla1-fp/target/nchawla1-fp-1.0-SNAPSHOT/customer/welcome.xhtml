@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="./../WEB-INF/templates/authTemplate.xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:define name="title">
+        Welcome #{loginController.remoteUser}
+        <br/>
+        <h5>Customer Content</h5>
+    </ui:define>
+
+
+    <ui:define name="content">
+        <h:dataTable value="#{customerService.findByUsername(loginController.remoteUser)}" 
+                     var="cus"
+                     styleClass="table table-hover table-striped">
+            <h:column>
+                <f:facet name="header"><h:outputText value="ID"/></f:facet>
+                <h:outputText value="#{cus.id}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="First Name"/></f:facet>
+                <h:outputText value="#{cus.firstName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Last Name"/></f:facet>
+                <h:outputText value="#{cus.lastName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Username"/></f:facet>
+                <h:outputText value="#{cus.user.userName}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header"><h:outputText value="Last Updated"/></f:facet>
+                <h:outputText value="#{cus.lastUpdated}">
+                    <f:convertDateTime type="both" 
+                                       dateStyle="short" 
+                                       timeStyle="full"
+                                       timeZone="#{appConfig.defaultTimeZone}"/>
+                </h:outputText>
+            </h:column>
+        </h:dataTable>
+        <a href="http://localhost:8080/nchawla1-fp/logout">Logout</a>
+    </ui:define>
+
+
+    <br/>
+    <br/>
+
+
+
+</ui:composition>
